@@ -20,7 +20,7 @@
 		"url": "git+https://github.com/ReliableGenius/backlog.md-drift.git"
 	},
 	"author": "",
-	"license": "ISC",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/ReliableGenius/backlog.md-drift/issues"
 	},
