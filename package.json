@@ -5,15 +5,21 @@
 	"type": "module",
 	"main": "dist/index.js",
 	"bin": {
-		"backlog-drift": "src/index.ts"
+		"backlog-drift": "dist/index.js"
 	},
+	"files": [
+		"dist/",
+		"LICENSE",
+		"README.md"
+	],
 	"scripts": {
 		"dev": "bun run src/index.ts",
-		"build": "bun build src/index.ts --outdir dist --target bun",
+		"build": "bun build src/index.ts --outdir dist --target node && node -e \"const fs=require('fs');const f='dist/index.js';const c=fs.readFileSync(f,'utf8');fs.writeFileSync(f,c.replace('#!/usr/bin/env bun','#!/usr/bin/env node'))\"",
 		"test": "bun test",
 		"check": "biome check src/",
 		"check:fix": "biome check --write src/",
-		"check:types": "tsc --noEmit"
+		"check:types": "tsc --noEmit",
+		"prepublishOnly": "bun run check:types && bun run check && bun test && bun run build"
 	},
 	"repository": {
 		"type": "git",
@@ -25,6 +31,19 @@
 		"url": "https://github.com/ReliableGenius/backlog.md-drift/issues"
 	},
 	"homepage": "https://github.com/ReliableGenius/backlog.md-drift#readme",
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"keywords": [
+		"backlog",
+		"drift",
+		"task-management",
+		"git-hooks",
+		"cli",
+		"ai",
+		"llm",
+		"backlog-md"
+	],
 	"dependencies": {
 		"commander": "^13.1.0",
 		"gray-matter": "^4.0.3",
