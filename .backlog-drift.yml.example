@@ -1,0 +1,30 @@
+# Drift detection settings
+structural:
+  enabled: true
+  check_dead_refs: true
+  check_dependency_state: true
+  check_stale_completions: true
+  check_orphaned_tasks: true
+  stale_completion_days: 14        # only flag if ref changed within N days of completion
+
+semantic:
+  enabled: false
+  provider: anthropic               # anthropic | openai | ollama
+  model: claude-sonnet-4-20250514
+
+# Hook behavior
+hook:
+  mode: warn                        # warn | block | silent
+  structural_only: true             # only run structural checks in hooks (fast)
+  semantic_on_commit: false          # semantic checks are slow; run manually
+
+# What to check
+scope:
+  statuses:                          # only check tasks in these statuses
+    - To Do
+    - In Progress
+    - Review
+  check_completed: true              # also check Done tasks for post-complete drift
+  check_archived: false
+  ignore_tasks: []                   # task IDs to exclude from drift checks
+  ignore_refs: []                    # file patterns to exclude (e.g., "*.test.ts")
