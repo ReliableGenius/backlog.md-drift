@@ -1,6 +1,6 @@
 {
 	"name": "backlog-drift",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "AI-powered drift detection for Backlog.md",
 	"type": "module",
 	"main": "dist/index.js",
