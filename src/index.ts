@@ -1,9 +1,12 @@
 #!/usr/bin/env bun
+import { createRequire } from "node:module";
 import { Command } from "commander";
 
+const require = createRequire(import.meta.url);
+const { version } = require("../package.json");
 const program = new Command();
 
-program.name("backlog-drift").description("AI-powered drift detection for Backlog.md").version("0.1.0");
+program.name("backlog-drift").description("AI-powered drift detection for Backlog.md").version(version);
 
 program
 	.command("check")
